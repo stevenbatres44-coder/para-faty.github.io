@@ -1,0 +1,355 @@
+/* ===== FONDO Y CONFIGURACIÓN GENERAL ===== */
+.lluvia-fotos {
+  margin: 0;
+  min-height: 100vh; /* permite scroll */
+  width: 100vw;
+  background-color: #e8ffee;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  padding: 40px 0;
+}
+
+/* ===== Niebla de fondo ===== */
+.niebla {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 80%);
+  backdrop-filter: blur(10px);
+  z-index: 0;
+  animation: moverNiebla 20s linear infinite alternate;
+}
+
+@keyframes moverNiebla {
+  0% { transform: translateX(-50px); opacity: 0.6; }
+  100% { transform: translateX(50px); opacity: 0.8; }
+}
+
+/* ===== Brillitos suaves verdes ===== */
+@keyframes brillar {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.2); }
+}
+
+.brillito {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(72, 255, 128, 0.8);
+  box-shadow: 0 0 10px 3px rgba(72, 255, 128, 0.8);
+  animation: brillar 2s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* ===== Fotos y corazones cayendo ===== */
+.foto-lluvia, .corazon {
+  position: absolute;
+  top: -150px;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 15px;
+  animation: caer linear forwards;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+@keyframes caer {
+  to {
+    transform: translateY(120vh) translateX(var(--movimiento, 0));
+  }
+}
+
+.corazon {
+  width: 40px;
+  height: 40px;
+  background: none;
+  font-size: 40px;
+  text-shadow: 0 0 10px rgba(255,100,150,0.8);
+}
+
+/* ===== Contenedor general ===== */
+.contenedor {
+  z-index: 10;
+  background: rgba(255,255,255,0.8);
+  padding: 30px 60px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  position: relative;
+  max-width: 900px;
+}
+
+/* ===== Botones de la página 2 ===== */
+.botones {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.btn-verde {
+  background-color: #60a860;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.btn-verde:hover { background-color: #4c8a4c; }
+
+.btn-rojo {
+  background-color: #d96b6b;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.btn-rojo:hover { background-color: #c95a5a; }
+
+/* ===== Mensaje de “está bien” ===== */
+.oculto { display: none; }
+
+#mensaje {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #317d3b;
+  animation: aparecer 1s ease-in-out forwards;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Texto intermedio ===== */
+.texto-mensaje {
+  font-size: 20px;
+  line-height: 1.7;
+  color: #1e3e24;
+  font-weight: 500;
+  text-align: justify;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 30px 50px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  animation: aparecer 1.5s ease-in-out;
+  max-width: 800px;
+}
+
+/* ===== Carta ===== */
+.carta {
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 50px 70px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  max-width: 800px;
+  text-align: justify;
+  font-family: 'Handlee', 'Great Vibes', 'Parisienne', cursive;
+  color: #2b4b2e;
+  font-size: 1.5rem;
+  line-height: 1.8;
+  animation: aparecer 2s ease-in-out;
+  border: 2px solid #d4eddc;
+  backdrop-filter: blur(6px);
+  position: relative;
+}
+
+.carta h2 {
+  text-align: center;
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2rem;
+  color: #3b6f46;
+  margin-bottom: 25px;
+}
+
+.carta p {
+  margin: 0;
+  white-space: pre-line;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.05);
+}
+
+.carta::before {
+  content: "";
+  position: absolute;
+  top: -5px; left: -5px; right: -5px; bottom: -5px;
+  border-radius: 25px;
+  background: linear-gradient(45deg, rgba(100,255,150,0.2), rgba(255,255,255,0.1));
+  z-index: -1;
+}
+
+/* ===== Botones tipo carta ===== */
+.botones-carta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 40px;
+}
+
+.botones-carta button {
+  font-family: 'Handlee', cursive;
+  background: #fffaf4;
+  color: #2e4b2e;
+  border: 2px solid #d6bfa6;
+  border-radius: 12px;
+  padding: 12px 25px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  letter-spacing: 0.5px;
+}
+
+.botones-carta button:hover {
+  background: #f3e8dc;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.botones-carta button:active {
+  transform: translateY(1px);
+  background: #efe2d3;
+}
+
+/* ===== Diseño responsivo ===== */
+@media (max-width: 768px) {
+  .carta {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    padding: 25px 20px;
+  }
+
+  .carta h2 {
+    font-size: 1.8rem;
+  }
+
+  .botones-carta {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .botones-carta button {
+    width: 100%;
+    font-size: 1rem;
+  }
+}
+
+.carta {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Brillo dorado suave que pasa sobre la carta */
+.carta::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,215,100,0.25), transparent);
+  animation: brillarDorado 6s infinite;
+}
+
+@keyframes brillarDorado {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
+
+/* ===== Página de inicio (clave) ===== */
+.inicio {
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 50px 70px;
+  border-radius: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 500px;
+  margin: auto;
+  position: relative;
+  animation: aparecer 1.2s ease-in-out;
+}
+
+.inicio h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5rem;
+  color: #2b4b2e;
+  margin-bottom: 20px;
+}
+
+.inicio input {
+  padding: 10px 15px;
+  border: 2px solid #b7d7b7;
+  border-radius: 10px;
+  width: 70%;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.inicio input:focus {
+  border-color: #60a860;
+  box-shadow: 0 0 8px rgba(96,168,96,0.4);
+}
+
+.inicio button {
+  background-color: #60a860;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 10px;
+  transition: background 0.3s ease;
+}
+
+.inicio button:hover {
+  background-color: #4c8a4c;
+}
+
+#mensaje {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  color: #b33a3a;
+  font-weight: 600;
+  min-height: 20px;
+}
+
+.texto-floral {
+  font-family: 'Handlee', cursive;
+  font-size: 1.6rem;
+  color: #2b4b2e;
+  text-align: center;
+  line-height: 1.7;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 25px 40px;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  animation: aparecer 1.5s ease-in-out;
+}
+
+.mensaje-suave {
+  font-family: 'Handlee', cursive;
+  font-size: 1.3rem;
+  color: #3a6f42;
+  margin-top: 20px;
+  background: rgba(255,255,255,0.7);
+  padding: 10px 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
