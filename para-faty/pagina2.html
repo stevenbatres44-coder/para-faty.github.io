@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌸 Estas son tus flores</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Handlee&display=swap" rel="stylesheet">
+</head>
+<body class="lluvia-fotos">
+
+  <!-- Fondo con niebla -->
+  <div class="niebla"></div>
+
+  <!-- Contenedor principal -->
+  <div class="contenedor">
+    <h1 class="texto-floral">
+      Tal vez ni se acuerde por qué le mando esto,  
+      o tal vez es algo tonto y por eso no se acuerda.  
+      Pero yo sí me acuerdo, y sí quería hacer algo...  
+      <br><br>🌷 Pero está bien si no lo quiere leer 🌷
+    </h1>
+
+    <!-- Botones -->
+    <div class="botones">
+      <button class="btn-verde" onclick="window.location.href='pagina3.html'">Seguir leyendo</button>
+      <button class="btn-rojo" id="noLeer">No quiero leer</button>
+    </div>
+
+    <!-- Mensaje de “no quiero leer” -->
+    <p id="mensaje" class="oculto mensaje-suave">Está bien 🌸, igual espero que tenga un lindo día.</p>
+  </div>
+
+  <!-- Música de fondo -->
+  <audio id="musica" autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/03/audio_65b2082527.mp3?filename=heaven-can-wait-142911.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="js/lluvia.js"></script>
+
+  <script>
+    // Animación para mostrar mensaje si no quiere leer
+    document.getElementById("noLeer").addEventListener("click", () => {
+      const mensaje = document.getElementById("mensaje");
+      mensaje.classList.remove("oculto");
+      mensaje.style.opacity = "0";
+      setTimeout(() => {
+        mensaje.style.transition = "opacity 1.5s ease-in-out";
+        mensaje.style.opacity = "1";
+      }, 100);
+    });
+  </script>
+
+</body>
+</html>
